@@ -49,3 +49,11 @@ class Brujula:
         self.__comprobar_punto_cardinal(punto)
         pos = self.__puntos.index(punto) + 1
         return self.__puntos[pos % len(self.__puntos)]
+
+    def detras(self, punto):
+        """
+        Devuelve el punto cardinal a espaldas del punto recibido.
+        """
+        self.__comprobar_punto_cardinal(punto)
+        pos = self.__puntos.index(punto) + 2
+        return self.__puntos[pos % len(self.__puntos)]
