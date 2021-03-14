@@ -1,7 +1,6 @@
-from mapa import Coordenada, Mapa
+from coordenada import Coordenada
 from random import choice as aleatorio
 from brujula import Brujula
-# Clase Robot - edumarrom
 
 IZQUIERDA = ('L', 'I', 'LEFT', 'IZQUIERDA', 'IZQ')
 DERECHA = ('R', 'D', 'RIGHT', 'DERECHA', 'DER')
@@ -39,7 +38,8 @@ class Robot:
     """
 
     def __str__(self):
-        return f'{self.saludar()} | {self.orientacion()} | {self.distancia()} m. recorridos | {self.posicion()}'
+        return f'{self.saludar()} | {self.orientacion()} | '\
+            f'{self.distancia()} m. recorridos | {self.posicion()}'
 
     @staticmethod
     def comprobar_generacion(gen):
@@ -83,13 +83,14 @@ class Robot:
     def saludar(self):
         return f'{self.__generacion}{self.__numero} ({self.__alias})'
 
-paco = Robot('Paco', 'm')
-paco.orientacion()
-paco.girar('izquierda')
-paco.orientacion()
-manolo = Robot('Manolo', 'z')
-paco.avanzar(300)
-paco.girar('der')
-paco.avanzar(750)
-paco.girar('r')
-print(paco)
+if __name__ == "__main__":
+    paco = Robot('Paco', 'm')
+    paco.orientacion()
+    paco.girar('izquierda')
+    paco.orientacion()
+    manolo = Robot('Manolo', 'z')
+    paco.avanzar(300)
+    paco.girar('der')
+    paco.avanzar()
+    paco.girar('r')
+    print(paco)

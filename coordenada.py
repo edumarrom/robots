@@ -6,8 +6,11 @@ class Coordenada:
     """
     Clase Coordenada
     ---
-    La clase coordenada representa la posición de un robot en un plano bidimensional.
-    Esta posición se representa con la latitud (eje x) y la longitud (eje y).
+    La clase coordenada representa la posición de un robot en un \
+        plano bidimensional.
+
+    Esta posición se representa con su latitud (eje x) y \
+        su longitud (eje y).
     """
     def __init__(self, latitud, longitud):
         """Constructor de la clase Coordenada."""

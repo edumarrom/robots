@@ -18,7 +18,7 @@ Crear robots con una serie de características.
 7. Todo robot nace con un alias no vacío y no cambia nunca a lo largo de
   su vida.
 8. Un robot puede saludar indicando su nombre completo
-  (código del robot +   + (alias).
+  (código del robot + (alias).
 9. El código de un robot es la generación concatenado con el número
   (P.e. M1)
 10. Cuando se muestre la información de un robot por pantalla aparecerá
