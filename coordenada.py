@@ -1,6 +1,4 @@
 from random import randint
-from warnings import resetwarnings
-
 
 class Coordenada:
     """

@@ -1,4 +1,5 @@
 from random import choice as punto_aleatorio
+
 class Brujula:
     """
     Clase Brújula
