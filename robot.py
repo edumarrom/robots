@@ -1,4 +1,4 @@
-from mapa import Mapa
+from mapa import Coordenada, Mapa
 from random import choice as aleatorio
 from brujula import Brujula
 # Clase Robot - edumarrom
@@ -7,6 +7,20 @@ IZQUIERDA = ('L', 'I', 'LEFT', 'IZQUIERDA', 'IZQ')
 DERECHA = ('R', 'D', 'RIGHT', 'DERECHA', 'DER')
 
 class Robot:
+    """
+    Clase Robot
+    ---
+    La clase Robot representa a un robot, el cual tiene la habilidad \
+        de moverse a traves de un plano bidimensional.
+
+    El robot está compuesto por:
+        - numero: int -> número de identificación.
+        - alias: str -> Alias del robot.
+        - generacion: str -> Generación a la que pertenece.
+        - orientacion: Mapa
+        - posicion
+
+    """
     __ultimo = 0
     def __init__(self, alias, gen):
         Robot.__ultimo += 1
@@ -14,9 +28,9 @@ class Robot:
         self.__alias = alias
         self.set_generacion(gen.upper())
         self.brujula = Brujula()
-        lat, lon = Mapa.posicion_aleatoria()
-        self.__posicion = Mapa(lat, lon)
         self.__orientacion = self.brujula.punto_aleatorio()
+        lat, lon = Coordenada.posicion_aleatoria()
+        self.__posicion = Coordenada(lat, lon)
         self.__distancia = 0
 
     """
@@ -61,7 +75,7 @@ class Robot:
             self.set_orientacion(destino)
         else: raise ValueError(f"'{direccion}' no es una dirección válida.")
 
-    def avanzar(self, distancia):
+    def avanzar(self, distancia = 1):
         direccion = self.orientacion()
         self.__posicion.mover(direccion, distancia)
         self.__distancia += distancia
