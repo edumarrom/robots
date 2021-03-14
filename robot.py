@@ -1,9 +1,10 @@
+from mapa import Mapa
 from random import choice as aleatorio
 from brujula import Brujula
 # Clase Robot - edumarrom
 
 IZQUIERDA = ('L', 'I', 'LEFT', 'IZQUIERDA', 'IZQ')
-DERECHA = ('R', 'D', 'RIGHT', 'DERECHA'), 'DER'
+DERECHA = ('R', 'D', 'RIGHT', 'DERECHA', 'DER')
 
 class Robot:
     __ultimo = 0
@@ -13,6 +14,8 @@ class Robot:
         self.__alias = alias
         self.set_generacion(gen.upper())
         self.brujula = Brujula()
+        lat, lon = Mapa.posicion_aleatoria()
+        self.__posicion = Mapa(lat, lon)
         self.__orientacion = self.brujula.punto_aleatorio()
         self.__distancia = 0
 
@@ -22,7 +25,7 @@ class Robot:
     """
 
     def __str__(self):
-        return f'{self.saludar()} | {self.orientacion()} | {self.distancia()} m. recorridos.'
+        return f'{self.saludar()} | {self.orientacion()} | {self.distancia()} m. recorridos | {self.posicion()}'
 
     @staticmethod
     def comprobar_generacion(gen):
@@ -42,11 +45,12 @@ class Robot:
     def set_orientacion(self, ori):
         self.__orientacion = ori
 
+    def posicion(self):
+        return self.__posicion
+
     def distancia(self):
         return self.__distancia
 
-    def set_distancia(self, dis):
-        self.__distancia = dis
 
     def girar(self, direccion):
         if direccion.upper() in IZQUIERDA:
@@ -57,8 +61,10 @@ class Robot:
             self.set_orientacion(destino)
         else: raise ValueError(f"'{direccion}' no es una dirección válida.")
 
-    def avanzar(self, metros):
-        self.set_distancia(self.distancia() + metros)
+    def avanzar(self, distancia):
+        direccion = self.orientacion()
+        self.__posicion.mover(direccion, distancia)
+        self.__distancia += distancia
 
     def saludar(self):
         return f'{self.__generacion}{self.__numero} ({self.__alias})'
